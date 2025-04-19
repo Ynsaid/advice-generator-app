@@ -51,5 +51,5 @@ Users should be able to:
 
 - Website - (https://www.github.com/Ynsaid)
 - Frontend Mentor - [@Ynsaid](https://www.frontendmentor.io/profile/Ynsaid)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+
 
