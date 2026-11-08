@@ -1,28 +1,34 @@
-const text = document.querySelector(".p-adv");
-const button = document.querySelector(".btn");
-const NumberOfAdvice = document.querySelector(".n-adv");
-// Initial fetch
-fetch("https://api.adviceslip.com/advice")
-    .then(res => res.json())
-    .then(data => {
-        text.textContent = "“" +data.slip.advice + "”";
-        NumberOfAdvice.textContent =  "Advice " + data.slip.id;
-    })
-    .catch(error => {
-        console.error("Error fetching advice:", error);
-    });
+const adviceText = document.querySelector(".p-adv");
+const adviceButton = document.querySelector(".btn");
+const adviceNumber = document.querySelector(".n-adv");
 
-// Function to fetch advice
-function fetchAdvice() {
-    fetch("https://api.adviceslip.com/advice")
-        .then(res => res.json())
-        .then(data => {
-            text.textContent = data.slip.advice;
-            NumberOfAdvice.textContent =  "Advice #" + data.slip.id;
-        })
-        .catch(error => {
-            console.error("Error fetching advice:", error);
-        });
+async function fetchAdvice() {
+    
+  try {
+    adviceButton.disabled = true;
+    adviceText.textContent = "Loading...";
+
+    const response = await fetch(
+      `https://api.adviceslip.com/advice?t=${Date.now()}`,
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    adviceText.textContent = `“${data.slip.advice}”`;
+    adviceNumber.textContent = `Advice #${data.slip.id}`;
+  } catch (error) {
+    console.error("Error fetching advice:", error);
+    adviceText.textContent = "Sorry, could not load advice. Please try again.";
+  } finally {
+    adviceButton.disabled = false;
+  }
 }
 
-button.addEventListener("click", fetchAdvice);
+adviceButton.addEventListener("click", fetchAdvice);
+
+fetchAdvice();
