@@ -6,7 +6,7 @@ fetch("https://api.adviceslip.com/advice")
     .then(res => res.json())
     .then(data => {
         text.textContent = "“" +data.slip.advice + "”";
-        NumberOfAdvice.textContent =  "Advice" + data.slip.id;
+        NumberOfAdvice.textContent =  "Advice " + data.slip.id;
     })
     .catch(error => {
         console.error("Error fetching advice:", error);
