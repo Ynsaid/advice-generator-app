@@ -37,7 +37,7 @@ body{
 .container label{
     color: var(--Neon-Green);
     font-family: 'Manrope',sans-serif;
-    font-size: 10px;
+    font-size: 32px;
     font-weight: 800;
 }
 .container p{
