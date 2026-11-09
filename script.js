@@ -21,6 +21,10 @@ async function fetchAdvice() {
 
     adviceText.textContent = `“${data.slip.advice}”`;
     adviceNumber.textContent = `Advice #${data.slip.id}`;
+
+    adviceText.style.fontSize = "42px"
+    adviceT.style.fontSize = "42px"
+      
   } catch (error) {
     console.error("Error fetching advice:", error);
     adviceText.textContent = "Sorry, could not load advice. Please try again.";
